@@ -15,6 +15,8 @@ class PersonalDetails extends StatefulWidget {
 }
 
 class _PersonalDetailsState extends State<PersonalDetails> {
+
+
   Widget getTextField(String hint) {
     return Row(
       children: [
@@ -48,26 +50,23 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-            child: SizedBox(
-              height: 58,
-              child: TextField(
-                style: const TextStyle(color: Colors.black),
-                decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 2.0),
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(8.0),
-                        topRight: Radius.circular(8.0)),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 2.0),
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(8.0),
-                        topRight: Radius.circular(8.0)),
-                  ),
-                  hintText: hint,
-                  hintStyle: const TextStyle(color: Colors.grey),
+            child: TextField(
+              style: const TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(8.0),
+                      topRight: Radius.circular(8.0)),
                 ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black, width: 2.0),
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(8.0),
+                      topRight: Radius.circular(8.0)),
+                ),
+                hintText: hint,
+                hintStyle: const TextStyle(color: Colors.grey),
               ),
             ),
           ),
@@ -78,14 +77,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
 
   Widget getText(String data) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, top: 10),
+      padding: const EdgeInsets.only(left: 15, top: 10,bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
             data,
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+            style:  TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: widget.fontMultiplier * 3,),
           ),
         ],
       ),
@@ -211,7 +210,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           child: Column(
             children: [
               Row(
-                children: const [
+                children:  [
                   Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: SizedBox(
@@ -219,7 +218,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         child: Center(
                             child: Text(
                           "Photo",
-                          style: TextStyle(fontSize: 18, color: Colors.black),
+                          style: TextStyle(fontSize: widget.fontMultiplier * 3,
+                              color: Colors.black,
+                          fontWeight: FontWeight.bold),
                         ))),
                   )
                 ],
@@ -275,7 +276,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Colors.deepPurple,
                     borderRadius: BorderRadius.only(

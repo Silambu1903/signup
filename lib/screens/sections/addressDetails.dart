@@ -483,7 +483,7 @@ class _AddressDetailsState extends State<AddressDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(
@@ -493,19 +493,12 @@ class _AddressDetailsState extends State<AddressDetails> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: SizedBox(
-                        width: mWidth * 0.02,
-                        height: mHeight * 0.02,
-                        child: const Icon(Icons.phone_android),
-                      ),
+                    SizedBox(
+                      width: mWidth * 0.02,
+                      height: mHeight * 0.02,
+                      child: const Icon(Icons.phone_android),
                     ),
-                    const Expanded(
-                      child: Text(
-                        "+91",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    )
+
                   ],
                 ),
               ),
@@ -524,7 +517,7 @@ class _AddressDetailsState extends State<AddressDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(
@@ -557,7 +550,7 @@ class _AddressDetailsState extends State<AddressDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(

@@ -7,8 +7,13 @@ class OccupationDetails extends StatefulWidget {
 
   bool selectedOccupationType = false;
   bool salariedCheckboxVisibility = false;
+  bool selfEmployedCheckboxVisibility = false;
+  bool selfBusiness =  false;
   int? currentSelectedIndex;
   String? selectEducation = "Select";
+  late MediaQueryData screenDimens;
+  late double fontMultiplier;
+  int groupValue = 1;
 
   @override
   _OccupationDetailsState createState() => _OccupationDetailsState();
@@ -149,16 +154,86 @@ class _OccupationDetailsState extends State<OccupationDetails> {
     );
   }
 
+  Widget getBusinessCheckBox() {
+    return Visibility(
+      visible: widget.selfBusiness,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Wrap(
+          children: [
+            SizedBox(
+              height: 50,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: occupationType.length,
+                itemBuilder: (ctx, index) {
+                  return checkBoxItem(business[index], index);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget getSelfEmployedCheckBox() {
+    return Visibility(
+      visible: widget.selfEmployedCheckboxVisibility,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Wrap(
+          children: [
+            SizedBox(
+              height: 50,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: selfEmployed.length,
+                itemBuilder: (ctx, index) {
+                  return checkBoxItem(selfEmployed[index], index);
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget checkBoxItem(ItemCheck occupationType, int index) {
     return Row(
       children: [
         Text(occupationType.name!),
-        Checkbox(
-          value: occupationType.isChecked,
-          onChanged: (value) {
+        Radio(
+          value: index,
+          groupValue: widget.groupValue,
+          onChanged: (int? val) {
             setState(() {
-              occupationType.isChecked = value;
-              widget.salariedCheckboxVisibility = value!;
+              widget.groupValue = val!;
+              if (occupationType.name == 'Salaried') {
+                widget.salariedCheckboxVisibility = true;
+              }
+              if (occupationType.name != 'Salaried') {
+                widget.salariedCheckboxVisibility = false;
+              }
+              if (occupationType.name == 'Self Employed') {
+                widget.selfEmployedCheckboxVisibility = true;
+              }
+              if (occupationType.name != 'Self Employed') {
+                widget.selfEmployedCheckboxVisibility = false;
+              }
+              if (occupationType.name == 'Business') {
+
+                widget.selfBusiness = true;
+              }
+              if (occupationType.name != 'Business') {
+
+                widget.selfBusiness = false;
+              }
             });
           },
         ),
@@ -170,6 +245,8 @@ class _OccupationDetailsState extends State<OccupationDetails> {
   Widget build(BuildContext context) {
     double mWidth = MediaQuery.of(context).size.width;
     double mHeight = MediaQuery.of(context).size.height;
+    widget.screenDimens = MediaQuery.of(context);
+    widget.fontMultiplier = widget.screenDimens.size.height * 0.01;
     return Column(
       children: [
         Row(
@@ -234,6 +311,8 @@ class _OccupationDetailsState extends State<OccupationDetails> {
           ),
         ),
         getSalariedCheckBox(),
+        getSelfEmployedCheckBox(),
+        getBusinessCheckBox(),
         getText("Gross Annual Income"),
         getTextField('Gross Annual Income'),
         Padding(
@@ -255,6 +334,30 @@ class _OccupationDetailsState extends State<OccupationDetails> {
             ],
           ),
         ),
+
+        Row(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 40,
+                  child: MaterialButton(
+                    color: Colors.purple,
+                    onPressed: () {},
+                    child: Text(
+                      'save',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: widget.fontMultiplier * 3,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }

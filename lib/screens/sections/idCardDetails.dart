@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class IDCardDetails extends StatefulWidget {
-   IDCardDetails({Key? key}) : super(key: key);
+  IDCardDetails({Key? key}) : super(key: key);
 
   PickedFile? pickedFile;
   File? imageFileAadhaarFront;
@@ -102,34 +102,63 @@ class _IDCardDetailsState extends State<IDCardDetails> {
   getFromCamera(int index) async {
     if (index == 1) {
       widget.pickedFile = (await ImagePicker().getImage(
-        source: ImageSource.gallery,
-        maxWidth: 1000,
-        maxHeight: 1000,
-      ));
-      setState(() {
-        widget.imageFileAadhaarRear = File(widget.pickedFile!.path);
-      });
-    } else {
-      widget.pickedFile = (await ImagePicker().getImage(
         source: ImageSource.camera,
         maxWidth: 1000,
         maxHeight: 1000,
       ));
       setState(() {
-        widget.imageFileAadhaarRear = File(widget.pickedFile!.path);
+        if (index == 1) {
+          widget.imageFileAadhaarFront = File(widget.pickedFile!.path);
+        } else if (index == 2) {
+          widget.imageFileAadhaarRear = File(widget.pickedFile!.path);
+        }
+        else if (index == 3) {
+          widget.imageFilePanFront = File(widget.pickedFile!.path);
+        }
+        else if (index == 4) {
+          widget.imageFilePanRear = File(widget.pickedFile!.path);
+        }
+        else if (index == 5) {
+          widget.imageFileDrivingFront = File(widget.pickedFile!.path);
+        }
+        else if (index == 6) {
+          widget.imageFileDrivingRear = File(widget.pickedFile!.path);
+        }
+        else if (index == 7) {
+          widget.imageFilePassportFront = File(widget.pickedFile!.path);
+        }
+        else if (index == 8) {
+          widget.imageFilePassportRear = File(widget.pickedFile!.path);
+        }
+        else if (index == 9) {
+          widget.imageFilePassportFront = File(widget.pickedFile!.path);
+        }
+        else if (index == 10) {
+          widget.imageFilePassportRear = File(widget.pickedFile!.path);
+        }
+        else if (index == 11) {
+          widget.imageFileVoterFront = File(widget.pickedFile!.path);
+        }
+        else if (index == 12) {
+          widget.imageFileVoterRear = File(widget.pickedFile!.path);
+        }
+        else if (index == 13) {
+          widget.imageFileFamilyFront = File(widget.pickedFile!.path);
+        }
+        else if (index == 14) {
+          widget.imageFileFamilyRear = File(widget.pickedFile!.path);
+        }
       });
     }
   }
 
-  Widget setImage(int index) {
+  setImage(int index) {
     if (index == 1) {
-      return Container(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: widget.imageFileAadhaarFront != null
-              ? Image.file(widget.imageFileAadhaarFront!, fit: BoxFit.cover)
-              : Image.asset('assets/uploadfile.png'),
-        ),
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: widget.imageFileAadhaarFront != null
+            ? Image.file(widget.imageFileAadhaarFront!, fit: BoxFit.cover)
+            : Center(child: Text('Choose File')),
       );
     } else {
       return Container(
@@ -137,7 +166,7 @@ class _IDCardDetailsState extends State<IDCardDetails> {
           borderRadius: BorderRadius.circular(15),
           child: widget.imageFileAadhaarRear != null
               ? Image.file(widget.imageFileAadhaarRear!, fit: BoxFit.cover)
-              : Image.asset('assets/uploadfile.png'),
+              : Center(child: Text('Choose File')),
         ),
       );
     }
@@ -176,7 +205,7 @@ class _IDCardDetailsState extends State<IDCardDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(
@@ -221,8 +250,8 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                         decoration: const BoxDecoration(
                             color: Color(0xfff2f4f2),
                             borderRadius: BorderRadius.all(Radius.circular(8))),
-                        child: const Center(
-                          child: Text('Choose File'),
+                        child: Center(
+                          child: setImage(1),
                         ),
                       ),
                     ),
@@ -258,7 +287,7 @@ class _IDCardDetailsState extends State<IDCardDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(
@@ -333,7 +362,7 @@ class _IDCardDetailsState extends State<IDCardDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(
@@ -410,7 +439,7 @@ class _IDCardDetailsState extends State<IDCardDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(
@@ -485,7 +514,7 @@ class _IDCardDetailsState extends State<IDCardDetails> {
               flex: 2,
               child: Container(
                 margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
-                height: 58,
+                height: 51,
                 decoration: const BoxDecoration(
                     color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(
@@ -553,7 +582,6 @@ class _IDCardDetailsState extends State<IDCardDetails> {
             ),
           ],
         ),
-
       ],
     );
   }
