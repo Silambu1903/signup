@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:signup/theme/mytheme.dart';
 
-import 'itemCheckboxModel.dart';
+import 'model/itemCheckboxModel.dart';
 
 void main() {
   runApp(const MyAppTheme());

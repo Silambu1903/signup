@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:signup/screens/signUpScreens.dart';
 
 class PersonalDetails extends StatefulWidget {
   PersonalDetails({Key? key}) : super(key: key);
@@ -10,20 +14,61 @@ class PersonalDetails extends StatefulWidget {
   late MediaQueryData screenDimens;
   late double fontMultiplier;
 
+  TextEditingController name = TextEditingController();
+  TextEditingController surName = TextEditingController();
+  TextEditingController fatherName = TextEditingController();
+  TextEditingController motherName = TextEditingController();
+  TextEditingController dateOfBirth = TextEditingController();
+  TextEditingController nationality = TextEditingController();
+
+  PickedFile? pickedFile;
+  File? imageFileProfile;
+
   @override
   _PersonalDetailsState createState() => _PersonalDetailsState();
 }
 
 class _PersonalDetailsState extends State<PersonalDetails> {
+  getFromCamera() async {
+    widget.pickedFile = (await ImagePicker().getImage(
+      source: ImageSource.camera,
+      maxWidth: 1000,
+      maxHeight: 1000,
+    ));
+    setState(() {
+      widget.imageFileProfile = File(widget.pickedFile!.path);
+    });
+  }
 
+  setImage() {
+    return widget.imageFileProfile != null
+        ? FileImage(widget.imageFileProfile!)
+        : const AssetImage("assets/noimage.png");
+  }
 
-  Widget getTextField(String hint) {
+  Widget getTextField(String hint, TextEditingController controller) {
     return Row(
       children: [
         Expanded(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(10, 8, 8, 0),
             child: TextField(
+              controller: controller,
+              onChanged: (value) {
+                if (hint == "First Name") {
+                  SignUpScreen.userInformation['FirstName'] = value;
+                } else if (hint == 'SurName') {
+                  SignUpScreen.userInformation['SurName'] = value;
+                } else if (hint == 'Date of Birth') {
+                  SignUpScreen.userInformation['DateOfBirth'] = value;
+                } else if (hint == 'Father Name') {
+                  SignUpScreen.userInformation['FatherName'] = value;
+                } else if (hint == 'Mother Name') {
+                  SignUpScreen.userInformation['MotherName'] = value;
+                } else if (hint == 'Nationality') {
+                  SignUpScreen.userInformation['Nationality'] = value;
+                }
+              },
               style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -44,13 +89,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     );
   }
 
-  Widget getTextFieldName(String hint) {
+  Widget getTextFieldName(String hint, TextEditingController controller) {
     return Row(
       children: [
         Expanded(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
             child: TextField(
+              controller: controller,
               style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 enabledBorder: const OutlineInputBorder(
@@ -77,14 +123,17 @@ class _PersonalDetailsState extends State<PersonalDetails> {
 
   Widget getText(String data) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, top: 10,bottom: 5),
+      padding: const EdgeInsets.only(left: 15, top: 10, bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
             data,
-            style:  TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: widget.fontMultiplier * 3,),
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: widget.fontMultiplier * 3,
+            ),
           ),
         ],
       ),
@@ -102,7 +151,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
         onChanged: (String? newValue) {
           setState(() {
-            widget.firstName != newValue!;
+            widget.firstName = newValue!;
+            SignUpScreen.userInformation['First'] = widget.firstName;
           });
         },
         items: <String>['Mr', 'Mrs', 'Ms']
@@ -127,7 +177,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
         onChanged: (String? newValue) {
           setState(() {
-            widget.selectGender != newValue!;
+            widget.selectGender = newValue!;
+            SignUpScreen.userInformation['Gender'] = widget.selectGender;
           });
         },
         items: <String>['Select', 'Male', 'Female']
@@ -152,7 +203,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
         onChanged: (String? newValue) {
           setState(() {
-            widget.selectYourStatus != newValue!;
+            widget.selectYourStatus = newValue!;
+            SignUpScreen.userInformation['Status'] = widget.selectYourStatus;
           });
         },
         items: <String>[
@@ -210,7 +262,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           child: Column(
             children: [
               Row(
-                children:  [
+                children: [
                   Padding(
                     padding: EdgeInsets.only(bottom: 10.0),
                     child: SizedBox(
@@ -218,9 +270,10 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         child: Center(
                             child: Text(
                           "Photo",
-                          style: TextStyle(fontSize: widget.fontMultiplier * 3,
+                          style: TextStyle(
+                              fontSize: widget.fontMultiplier * 3,
                               color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold),
                         ))),
                   )
                 ],
@@ -235,29 +288,29 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.deepPurple,
-                            width: 5.0,
+                            width: 2.0,
                           ),
                           shape: BoxShape.circle,
-                        ),
-                        child: SizedBox(
-                          width: 80,
-                          height: 80,
-                          child: CircleAvatar(
-                            child: Image.asset("assets/noimage.png"),
-                          ),
+                          image: DecorationImage(
+                              image: setImage(), fit: BoxFit.cover),
                         ),
                       ),
                       Positioned(
                         left: 65,
                         top: 10,
-                        child: Container(
-                          width: 30,
-                          height: 30,
-                          decoration: const BoxDecoration(
-                              color: Colors.black, shape: BoxShape.circle),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Image.asset("assets/pencil.png"),
+                        child: GestureDetector(
+                          onTap: () {
+                            getFromCamera();
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.black, shape: BoxShape.circle),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Image.asset("assets/pencil.png"),
+                            ),
                           ),
                         ),
                       )
@@ -278,7 +331,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 margin: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 height: 51,
                 decoration: const BoxDecoration(
-                    color: Colors.deepPurple,
+                    color: Color(0xfff2f4f2),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(15.0),
                         bottomLeft: Radius.circular(15.0))),
@@ -287,13 +340,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             ),
             Expanded(
               flex: 8,
-              child: getTextFieldName("First Name"),
+              child: getTextFieldName("First Name", widget.name),
             ),
           ],
         ),
         // todo : SurName
         getText("SurName"),
-        getTextField("SurName"),
+        getTextField("SurName", widget.surName),
         //  todo : Gender
         getText("Gender"),
         Row(
@@ -317,15 +370,15 @@ class _PersonalDetailsState extends State<PersonalDetails> {
         ),
         //  todo : Date of Birth
         getText("Date Of Birth"),
-        getTextField("Date Of Birth"),
+        getTextField("Date Of Birth", widget.dateOfBirth),
 
         //  todo : Father Name
         getText("Father Name"),
-        getTextField("Father Name"),
+        getTextField("Father Name", widget.fatherName),
 
         //  todo : Mother Name
         getText("Mother Name"),
-        getTextField("Mother Name"),
+        getTextField("Mother Name", widget.motherName),
 
         //  todo : Marital Status
         getText("Martial Status"),
@@ -351,7 +404,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
 
         //  todo : Nationality
         getText("Nationality"),
-        getTextField("Nationality"),
+        getTextField("Nationality", widget.nationality),
       ],
     );
   }

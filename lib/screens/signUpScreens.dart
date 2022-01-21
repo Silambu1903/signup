@@ -7,6 +7,7 @@ import 'package:signup/screens/sections/personalDetails.dart';
 class SignUpScreen extends StatefulWidget {
   SignUpScreen({Key? key}) : super(key: key);
   static String id = "/signUpScreen";
+  static Map<dynamic, dynamic> userInformation = {};
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();

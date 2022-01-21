@@ -70,7 +70,7 @@ class _AddressDetailsState extends State<AddressDetails> {
             const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
         onChanged: (String? newValue) {
           setState(() {
-            widget.selectLanguage != newValue!;
+            widget.selectLanguage = newValue!;
           });
         },
         items: <String>['Select Language', 'Tamil', 'English', 'Hindi']
@@ -95,7 +95,7 @@ class _AddressDetailsState extends State<AddressDetails> {
             const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
         onChanged: (String? newValue) {
           setState(() {
-            widget.selectModeCommunication != newValue!;
+            widget.selectModeCommunication = newValue!;
           });
         },
         items: <String>[
@@ -124,7 +124,7 @@ class _AddressDetailsState extends State<AddressDetails> {
             const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
         onChanged: (String? newValue) {
           setState(() {
-            widget.selectPropertyType != newValue!;
+            widget.selectPropertyType = newValue!;
           });
         },
         items: <String>[
@@ -155,7 +155,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                 margin: const EdgeInsets.fromLTRB(10, 2, 5, 10),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.black38,
+                    color: Colors.deepPurple,
                     width: 2,
                   ),
                 ),
@@ -255,7 +255,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                   margin: const EdgeInsets.fromLTRB(10, 2, 5, 10),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.black38,
+                      color: Colors.deepPurple,
                       width: 2,
                     ),
                   ),
@@ -498,7 +498,6 @@ class _AddressDetailsState extends State<AddressDetails> {
                       height: mHeight * 0.02,
                       child: const Icon(Icons.phone_android),
                     ),
-
                   ],
                 ),
               ),

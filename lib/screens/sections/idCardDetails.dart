@@ -100,56 +100,38 @@ class _IDCardDetailsState extends State<IDCardDetails> {
   }
 
   getFromCamera(int index) async {
-    if (index == 1) {
-      widget.pickedFile = (await ImagePicker().getImage(
-        source: ImageSource.camera,
-        maxWidth: 1000,
-        maxHeight: 1000,
-      ));
-      setState(() {
-        if (index == 1) {
-          widget.imageFileAadhaarFront = File(widget.pickedFile!.path);
-        } else if (index == 2) {
-          widget.imageFileAadhaarRear = File(widget.pickedFile!.path);
-        }
-        else if (index == 3) {
-          widget.imageFilePanFront = File(widget.pickedFile!.path);
-        }
-        else if (index == 4) {
-          widget.imageFilePanRear = File(widget.pickedFile!.path);
-        }
-        else if (index == 5) {
-          widget.imageFileDrivingFront = File(widget.pickedFile!.path);
-        }
-        else if (index == 6) {
-          widget.imageFileDrivingRear = File(widget.pickedFile!.path);
-        }
-        else if (index == 7) {
-          widget.imageFilePassportFront = File(widget.pickedFile!.path);
-        }
-        else if (index == 8) {
-          widget.imageFilePassportRear = File(widget.pickedFile!.path);
-        }
-        else if (index == 9) {
-          widget.imageFilePassportFront = File(widget.pickedFile!.path);
-        }
-        else if (index == 10) {
-          widget.imageFilePassportRear = File(widget.pickedFile!.path);
-        }
-        else if (index == 11) {
-          widget.imageFileVoterFront = File(widget.pickedFile!.path);
-        }
-        else if (index == 12) {
-          widget.imageFileVoterRear = File(widget.pickedFile!.path);
-        }
-        else if (index == 13) {
-          widget.imageFileFamilyFront = File(widget.pickedFile!.path);
-        }
-        else if (index == 14) {
-          widget.imageFileFamilyRear = File(widget.pickedFile!.path);
-        }
-      });
-    }
+    widget.pickedFile = (await ImagePicker().getImage(
+      source: ImageSource.camera,
+      maxWidth: 1000,
+      maxHeight: 1000,
+    ));
+    setState(() {
+      if (index == 1) {
+        widget.imageFileAadhaarFront = File(widget.pickedFile!.path);
+      } else if (index == 2) {
+        widget.imageFileAadhaarRear = File(widget.pickedFile!.path);
+      } else if (index == 3) {
+        widget.imageFilePanFront = File(widget.pickedFile!.path);
+      } else if (index == 4) {
+        widget.imageFilePanRear = File(widget.pickedFile!.path);
+      } else if (index == 5) {
+        widget.imageFileDrivingFront = File(widget.pickedFile!.path);
+      } else if (index == 6) {
+        widget.imageFileDrivingRear = File(widget.pickedFile!.path);
+      } else if (index == 7) {
+        widget.imageFilePassportFront = File(widget.pickedFile!.path);
+      } else if (index == 8) {
+        widget.imageFilePassportRear = File(widget.pickedFile!.path);
+      } else if (index == 9) {
+        widget.imageFileVoterFront = File(widget.pickedFile!.path);
+      } else if (index == 10) {
+        widget.imageFileVoterRear = File(widget.pickedFile!.path);
+      } else if (index == 11) {
+        widget.imageFileFamilyFront = File(widget.pickedFile!.path);
+      } else if (index == 12) {
+        widget.imageFileFamilyRear = File(widget.pickedFile!.path);
+      }
+    });
   }
 
   setImage(int index) {
@@ -158,15 +140,105 @@ class _IDCardDetailsState extends State<IDCardDetails> {
         borderRadius: BorderRadius.circular(15),
         child: widget.imageFileAadhaarFront != null
             ? Image.file(widget.imageFileAadhaarFront!, fit: BoxFit.cover)
-            : Center(child: Text('Choose File')),
+            : const Center(child: Text('Choose File')),
       );
-    } else {
-      return Container(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15),
+    } else if (index == 2) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
           child: widget.imageFileAadhaarRear != null
               ? Image.file(widget.imageFileAadhaarRear!, fit: BoxFit.cover)
-              : Center(child: Text('Choose File')),
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 3) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFilePanFront != null
+              ? Image.file(widget.imageFilePanFront!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 4) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFilePanRear != null
+              ? Image.file(widget.imageFilePanRear!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 5) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFileDrivingFront != null
+              ? Image.file(widget.imageFileDrivingFront!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 6) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFileDrivingRear != null
+              ? Image.file(widget.imageFileDrivingRear!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 7) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFilePassportFront != null
+              ? Image.file(widget.imageFilePassportFront!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 8) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFilePassportRear != null
+              ? Image.file(widget.imageFilePassportRear!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 9) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFileVoterFront != null
+              ? Image.file(widget.imageFileVoterFront!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 10) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFileVoterRear != null
+              ? Image.file(widget.imageFileVoterRear!, fit: BoxFit.cover)
+              : Center(child: const Text('Choose File')),
+        ),
+      );
+    } else if (index == 11) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFileFamilyFront != null
+              ? Image.file(widget.imageFileFamilyFront!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
+        ),
+      );
+    } else if (index == 12) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Container(
+          child: widget.imageFileFamilyRear != null
+              ? Image.file(widget.imageFileFamilyRear!, fit: BoxFit.cover)
+              : const Center(child: Text('Choose File')),
         ),
       );
     }
@@ -236,9 +308,7 @@ class _IDCardDetailsState extends State<IDCardDetails> {
             Expanded(
               child: Column(
                 children: [
-                  Wrap(
-                    children: [getText("Aadhaar Card Front Image")],
-                  ),
+                  getText("Aadhaar Card Front Image"),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
@@ -265,13 +335,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   getText("Aadhaar Card Rear Image"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(2);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(2),
+                        ),
                       ),
                     ),
                   )
@@ -321,13 +396,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   getText("Pan Card Front Image"),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(3);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(3),
+                        ),
                       ),
                     ),
                   )
@@ -340,13 +420,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   getText("Pan Card Rear Image"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(4);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(4),
+                        ),
                       ),
                     ),
                   )
@@ -398,13 +483,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(5);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(5),
+                        ),
                       ),
                     ),
                   )
@@ -417,13 +507,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   getText("Driving Licence \nRear Image"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(6);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(6),
+                        ),
                       ),
                     ),
                   )
@@ -473,13 +568,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   getText("Passport Front Image"),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(7);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(7),
+                        ),
                       ),
                     ),
                   )
@@ -492,13 +592,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   getText("Passport Rear Image"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(8);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(8),
+                        ),
                       ),
                     ),
                   )
@@ -526,7 +631,92 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   children: const [
                     Center(
                       child: Text(
-                        "V",
+                        "F",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 8,
+              child: getTextFieldName("Family Card Number"),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  getText("Family Card Front Image"),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(9);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(9),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  getText("Family Card Rear Image"),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(10);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(10),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        getText("Voter Card "),
+        Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                margin: const EdgeInsets.fromLTRB(10, 8, 0, 0),
+                height: 51,
+                decoration: const BoxDecoration(
+                    color: Color(0xfff2f4f2),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15.0),
+                        bottomLeft: Radius.circular(15.0))),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Center(
+                      child: Text(
+                        "F",
                         style: TextStyle(color: Colors.black),
                       ),
                     )
@@ -548,13 +738,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   getText("Voter Card Front Image"),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(11);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(11),
+                        ),
                       ),
                     ),
                   )
@@ -567,13 +762,18 @@ class _IDCardDetailsState extends State<IDCardDetails> {
                   getText("Voter Card Rear Image"),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                    child: Container(
-                      height: mHeight * 0.35,
-                      decoration: const BoxDecoration(
-                          color: Color(0xfff2f4f2),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: const Center(
-                        child: Text('Choose File'),
+                    child: GestureDetector(
+                      onTap: () {
+                        getFromCamera(12);
+                      },
+                      child: Container(
+                        height: mHeight * 0.35,
+                        decoration: const BoxDecoration(
+                            color: Color(0xfff2f4f2),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Center(
+                          child: setImage(12),
+                        ),
                       ),
                     ),
                   )
