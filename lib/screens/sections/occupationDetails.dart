@@ -514,29 +514,7 @@ class _OccupationDetailsState extends State<OccupationDetails> {
           ),
         ),
         sourceOfFundsType(),
-        Row(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 40,
-                  child: MaterialButton(
-                    color: Colors.purple,
-                    onPressed: () {},
-                    child: Text(
-                      'Save',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: widget.fontMultiplier * 3,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+
       ],
     );
   }
