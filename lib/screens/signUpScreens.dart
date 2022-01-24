@@ -95,7 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 });
                                 widget.controller.previousPage(
                                     duration: const Duration(
-                                        milliseconds: 1000),
+                                        milliseconds: 1500),
                                     curve: Curves.easeIn);
                               },
                               child: const Text(
@@ -129,7 +129,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                                   widget.controller.nextPage(
                                       duration: const Duration(
-                                          milliseconds: 1000),
+                                          milliseconds: 1500),
                                       curve: Curves.easeInOut);
                                 },
                                 child: Text(
